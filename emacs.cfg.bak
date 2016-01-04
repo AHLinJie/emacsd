@@ -1,0 +1,64 @@
+;;打开emacs 交互解释器
+;;M+x ielm
+(let ((default-directory "~/.emacs.d/el-get/"))
+  (normal-top-level-add-subdirs-to-load-path))
+
+(add-to-list 'load-path "~/.emacs.d/el-get/yasnippet/")
+(add-to-list 'load-path "~/.emacs.d/el-get/rope/")
+(add-to-list 'load-path "~/.emacs.d/el-get/pymacs/")
+(add-to-list 'load-path "~/.emacs.d/el-get/ropemacs/")
+(add-to-list 'load-path "~/.emacs.d/el-get/ropemode/")
+(add-to-list 'load-path "~/.emacs.d/el-get/auto-complete/")
+(add-to-list 'load-path "~/.emacs.d/el-get/virtualenvwrapper/")
+(add-to-list 'load-path "~/.emacs.d/el-get/virtualenv.el-master/")
+(add-to-list 'load-path "~/.emacs.d/el-get/python-django/")
+
+(load "~/.emacs.d/el-get/el-get/el-get.el")
+(load "~/.emacs.d/el-get/python-django/python-django.el")
+(load "~/.emacs.d/el-get/virtualenv.el-master/virtualenv.el")
+(load "~/.emacs.d/el-get/auto-complete/auto-complete.el")
+
+(tool-bar-mode 0) 
+(menu-bar-mode 0) 
+(scroll-bar-mode 0)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(virtualenv-root "~/workspace/taobao-backend/shopmanager/ve/lib/python2.7/"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;;关闭启动页面
+(setq inhibit-startup-message t)
+;;设置备份保存路径
+(setq backup-directory-alist (quote (("." . "~/.backups"))))
+
+;;配置virtualenv
+
+(setenv "PATH" (concat (getenv "PATH") ":" "~/workspace/taobao-backend/shopmanager/ve/bin"))
+(add-to-list 'exec-path "~/workspace/taobao-backend/shopmanager/ve/bin")
+
+;;speedbar 配置 下载的el文件在el-get/sr-speedbar
+(require 'sr-speedbar)
+
+;; 配置显示行号
+(global-linum-mode t)
+;;窗口切换
+(global-set-key (kbd "C-S-j") 'windmove-down)
+(global-set-key (kbd "C-S-k") 'windmove-up)
+(global-set-key (kbd "C-S-h") 'windmove-left)
+(global-set-key (kbd "C-S-l") 'windmove-right)
+
+
+;; This snippet enables lua-mode
+;; This line is not necessary, if lua-mode.el is already on your load-path
+(add-to-list 'load-path "/home/jishu_linjie/.emacs.d/el-get/lua-mode/lua-mode.el")
+(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+(add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+(add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
